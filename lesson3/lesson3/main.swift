@@ -129,3 +129,20 @@ struct PassangerLocomotive {
         self.age = age
     }
 }
+
+var hawk = FreightLocomotive(series: "62 Deutsche Reichsbahn", wagons: 3, speed: 140, acceleration: 1, cost: 120000, route: [.farm, .mill], cargoType: .bread, reliability: 50, condition: 100, age: 0)
+var raven = FreightLocomotive(series: "Wurttemberg T3", wagons: 3, speed: 60, acceleration: 5, cost: 35000, route: [.forest, .sawmill], cargoType: .firewood, reliability: 40, condition: 100, age: 0)
+var greyhound = PassangerLocomotive(series: "NUC Hudson", wagons: 1, speed: 160, acceleration: 15, cost: 200000, schedule: [.minsk, .kiev], wagonType: .sitting, reliability: 40, condition: 100, age: 0)
+var whale = PassangerLocomotive(series: "Stirling 4-2-2", wagons: 1, speed: 80, acceleration: 1, cost: 100000, schedule: [.moscow, .astana], wagonType: .sitting, reliability: 70, condition: 100, age: 0)
+
+print(hawk.cargoType)
+
+hawk.changeCargo(route: hawk.route[0])
+
+print(hawk.cargoType)
+
+print(whale.wagonType)
+
+whale.wagonType(station: whale.schedule[1])
+
+print(whale.wagonType)
