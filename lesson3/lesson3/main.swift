@@ -58,22 +58,24 @@ struct FreightLocomotive {
     var condition: Int
     var age: Int
     
-    mutating func changeCargo(route: RoutePoints) {
-        switch route {
-        case .forest:
-            self.cargoType = .firewood
-        case .sawmill:
-            self.cargoType = .planks
-        case .mine:
-            self.cargoType = .ore
-        case .factory:
-            self.cargoType = .iron
-        case .farm:
-            self.cargoType = .wheat
-        case .mill:
-            self.cargoType = .flour
-        case .bakery:
-            self.cargoType = .bread
+    mutating func changeCargo() {
+        for route in self.route {
+            switch route {
+            case .forest:
+                self.cargoType = .firewood
+            case .sawmill:
+                self.cargoType = .planks
+            case .mine:
+                self.cargoType = .ore
+            case .factory:
+                self.cargoType = .iron
+            case .farm:
+                self.cargoType = .wheat
+            case .mill:
+                self.cargoType = .flour
+            case .bakery:
+                self.cargoType = .bread
+            }
         }
     }
     
@@ -103,15 +105,10 @@ struct PassangerLocomotive {
     var condition: Int
     var age: Int
     
-    mutating func wagonType(station: Stations) {
-        switch station {
-        case .astana:
+    mutating func switchWagonType() {
+        if self.schedule.contains(.astana) {
             self.wagonType = .sleeping
-        case .moscow:
-            self.wagonType = .sitting
-        case .kiev:
-            self.wagonType = .sitting
-        case .minsk:
+        } else {
             self.wagonType = .sitting
         }
     }
@@ -137,12 +134,12 @@ var whale = PassangerLocomotive(series: "Stirling 4-2-2", wagons: 1, speed: 80, 
 
 print(hawk.cargoType)
 
-hawk.changeCargo(route: hawk.route[0])
+hawk.changeCargo()
 
 print(hawk.cargoType)
 
 print(whale.wagonType)
 
-whale.wagonType(station: whale.schedule[1])
+whale.switchWagonType()
 
 print(whale.wagonType)
