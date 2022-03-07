@@ -33,11 +33,19 @@ struct Queue<T> {
         }
         return tmpArray
     }
+    subscript(index: Int) -> T? {
+        get {
+            if index < elements.count {
+                return elements[index]
+            } else { return nil }
+        }
+        set {
+            if index < elements.count {
+                elements[index] = newValue!
+            }
+        }
+    }
     
-//    subscript(index: UInt) -> T? {
-//        guard let value = elements[Int(index)] else { return }
-//        return value
-//    }
 }
 
 var queue1 = Queue<Int>()
@@ -58,6 +66,16 @@ ar.sort { $0 > $1 }
 print(ar)
 print(ar.map { $0 * 2 })
 print(ar1.reduce(0, +))
+
+var queueArray = queue1.filterQueue() { $0 == $0 }
+print(queueArray.count)
+
+print(queue1[0],queue1[1],queue1[2])
+
+queue1[1] = 40
+queue1[2] = 50
+
+print(queue1)
 
 
 
