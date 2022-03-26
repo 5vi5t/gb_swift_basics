@@ -12,14 +12,15 @@ class GameScene: SKScene {
     
     
     override func didMove(to view: SKView) {
-        backgroundColor = SKColor.systemGray
+        backgroundColor = SKColor.black
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         self.physicsBody?.allowsRotation = false
         
         view.showsPhysics = true
         
-        
+        addLeftButton()
+        addRightButton()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -38,11 +39,31 @@ class GameScene: SKScene {
         
     }
     
-    func leftButton() {
+    func addLeftButton() {
         let leftButton = SKShapeNode()
         leftButton.path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 45, height: 45)).cgPath
         
-        leftButton.position = CGPoint(x: view.scene!.frame.minX + 30, y: view.scene!.frame.minY + 30)
+        leftButton.position = CGPoint(x: view!.scene!.frame.minX + 30, y: view!.scene!.frame.minY + 30)
         
+        leftButton.fillColor = UIColor.gray
+        leftButton.strokeColor = UIColor.gray
+        leftButton.lineWidth = 10
+        leftButton.name = "leftButton"
+        
+        self.addChild(leftButton)
+    }
+    
+    func addRightButton() {
+        let rightButton = SKShapeNode()
+        rightButton.path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 45, height: 45)).cgPath
+        
+        rightButton.position = CGPoint(x: view!.scene!.frame.maxX - 75, y: view!.scene!.frame.minY + 30)
+        
+        rightButton.fillColor = UIColor.gray
+        rightButton.strokeColor = UIColor.gray
+        rightButton.lineWidth = 10
+        rightButton.name = "leftButton"
+        
+        self.addChild(rightButton)
     }
 }
