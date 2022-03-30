@@ -137,7 +137,7 @@ extension GameScene: SKPhysicsContactDelegate {
             
         case CollisionCategories.EdgeBody:
             
-            snake!.removeFromParent()
+            snake?.removeFromParent()
             snake = nil
             addSnake()
         default:
